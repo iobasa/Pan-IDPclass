@@ -1,5 +1,5 @@
 <?php
-class Database
+class Database_Old
 {
     // Note: specify your own database credentials
     private $host = "localhost";
@@ -10,10 +10,14 @@ class Database
 
     private $password = "";
 
-    private static $instance = null;
     public $conn;
 
-    private function __construct(){
+    // get the database connection
+    public function getConnection()
+    {
+
+        $this->conn = null;
+
         $db_dsn = array(
             'host'    => $this->host,
             'dbname'  => $this->db_name,
@@ -38,19 +42,7 @@ class Database
             );
             exit;
         }
-    }
 
-    // get the database connection
-    public function getConnection()
-    {
         return $this->conn;
-    }
-
-    public static function getInstance(){
-        if(!self::$instance){
-            self::$instance = new Database();
-        }
-
-        return self::$instance;
     }
 }
