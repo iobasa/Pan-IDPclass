@@ -9,7 +9,7 @@
         //! means not
         if(!empty($username) && !empty($password)){
             //log user in
-            $message = login($username, $password);
+            $message = login($username, $password, $ip);
         }else{
             $message = 'Please fill out the required field';
         }
