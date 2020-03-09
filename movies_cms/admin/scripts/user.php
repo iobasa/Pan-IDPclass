@@ -45,6 +45,24 @@ function getSingleUser($id){
 
 }
 
+function getAllUsers(){
+    $pdo = Database::getInstance()->getConnection();
+    //TODO: execute the proper SQL query to fetch the user data whose user_id = $id
+    $get_all_user_query = "SELECT * FROM tbl_user";  
+    $users = $pdo->query($get_all_user_query); // not usng preapre becasue user has zero impact on the query so you can just run the query instead of prepare
+    // $get_all_user_result = $get_all_user_set->execute();
+
+    //TODO: if the execution is successful, return the user data
+    // Otherwise, return an error message
+    if($users){
+        return $users;
+    }else{
+    // User doesn't exist
+    return false;
+}
+
+}
+
 function editUser($fname, $username, $password, $email, $id){
     //TODO: set up database connection
     $pdo = Database::getInstance()->getConnection();
@@ -73,6 +91,30 @@ function editUser($fname, $username, $password, $email, $id){
 }else{
     // User doesn't exist
     return 'Could not edit';
+}
+
+}
+
+function deleteUser($id){
+    
+    $pdo = Database::getInstance()->getConnection();
+//TODO: finish the function to delete the given user
+    $delete_user_query = "DELETE FROM tbl_user WHERE user_id = :id";  
+    $delete_user_set = $pdo->prepare($delete_user_query); 
+    $delete_user_result = $delete_user_set->execute(
+        array(
+            ':id'=>$id
+        )
+    );
+
+         //if everything went through, redirect to admin_deleteuser.php 
+    //otherwise return false
+    if($delete_user_result && $delete_user_set->rowCount() > 0){
+        redirect_to('admin_deleteuser.php');
+    }else{
+    // User doesn't exist
+    return false;
+   
 }
 
 }

@@ -1,0 +1,9 @@
+TODO:
+
+1. Create a link in the dashboard page that linking to 'admin_deleteuser.php'
+
+2. Create the 'admin_deleteuser.php' under 'admin' folder
+
+3. Within the 'admin_deleteuser.php' page, listing all users in a '<table>' with the following columns 'User ID', 'User Name', 'User Email', 'Delete'
+
+4. The column 'Delete' would contain a link to 'admin_deleteuser.php?id=USERID', replace the 'USERID' by the user's ID.
